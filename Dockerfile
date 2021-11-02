@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM debian:bookworm-slim
 WORKDIR /opt
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -40,7 +40,7 @@ RUN update-ca-certificates \
     && mv emacs/* .
 
 # Build
-ENV CC="gcc-11"
+ENV CC="gcc-12"
 RUN ./autogen.sh && ./configure \
     --prefix "/usr/local" \
     --with-pgtk \
