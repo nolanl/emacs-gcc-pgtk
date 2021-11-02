@@ -42,7 +42,7 @@ RUN update-ca-certificates \
 # Build
 ENV CC="gcc-12"
 RUN ./autogen.sh && ./configure \
-    --prefix "/usr/local" \
+    --prefix "/usr" \
     --with-pgtk \
     --with-json \
     --with-gnutls  \
@@ -59,7 +59,7 @@ RUN make -j $(nproc)
 
 # Create package
 RUN EMACS_VERSION=$(sed -ne 's/AC_INIT(\[GNU Emacs\], \[\([0-9.]\+\)\], .*/\1/p' configure.ac).$(date +%y.%m.%d.%H) \
-    && make install prefix=/opt/emacs-gcc-pgtk_${EMACS_VERSION}/usr/local \
+    && make install prefix=/opt/emacs-gcc-pgtk_${EMACS_VERSION}/usr \
     && mkdir emacs-gcc-pgtk_${EMACS_VERSION}/DEBIAN && echo "Package: emacs-gcc-pgtk\n\
 Version: ${EMACS_VERSION}\n\
 Section: base\n\
