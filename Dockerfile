@@ -2,8 +2,7 @@ FROM debian:bookworm-slim
 WORKDIR /opt
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN sed -i 's/# deb-src/deb-src/' /etc/apt/sources.list &&\
-    apt-get update && apt-get install --yes --no-install-recommends  \
+RUN apt-get update && apt-get install --yes --no-install-recommends  \
     apt-transport-https\
     ca-certificates\
     build-essential \
@@ -19,7 +18,7 @@ RUN sed -i 's/# deb-src/deb-src/' /etc/apt/sources.list &&\
     libotf-dev \
     libsystemd-dev \
     libjansson-dev \
-    libgccjit-11-dev \
+    libgccjit-12-dev \
     libgif-dev \
     librsvg2-dev  \
     libxml2-dev \
